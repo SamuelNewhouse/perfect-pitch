@@ -5,6 +5,7 @@
 //
 // https://github.com/SamuelNewhouse
 //=============================================================================
+import makeNote from './makeNote.js';
 
 (() => {
   // TODO:
@@ -36,7 +37,7 @@
 
   const keyBoard = [null]; // 0 index is null because keys start at 1.
   for (let i = 1; i <= KEYS; i++) {
-    keyBoard.push({ timeOut: null });
+    keyBoard.push({ note: null, timeout: null });
   }
 
   const getFrequencyFromKeyNumber = (keyNumber) => {
@@ -45,56 +46,6 @@
     return TUNING * multiplier;
   }
 
-  const isKeyBlack = (keyNumber) => {
-    const n = keyNumber % SEMITONES;
-    return n === 0 || n === 2 || n === 5 || n === 7 || n === 10;
-  }
-
-  const doesBlackKeyNeedGap = (keyNumber) => {
-    const n = keyNumber % SEMITONES;
-    return n === 5 || n === 10;
-  }
-
-  const audio = (() => {
-    const FADETIME = 0.2;
-
-    const context = new (window.AudioContext || window.webkitAudioContext)();
-    const compressor = context.createDynamicsCompressor();
-    compressor.threshold.setValueAtTime(-50, context.currentTime);
-    compressor.knee.setValueAtTime(40, context.currentTime);
-    compressor.ratio.setValueAtTime(12, context.currentTime);
-    compressor.attack.setValueAtTime(0, context.currentTime);
-    compressor.release.setValueAtTime(1, context.currentTime);
-    compressor.connect(context.destination);
-
-    const play = (oscillator) => {
-      oscillator.start();
-    }
-
-    const end = (oscillator, gain) => {
-      const endTime = context.currentTime + FADETIME;
-      gain.gain.setValueAtTime(0, 0);
-      oscillator.stop(endTime);
-    }
-
-    return {
-      makeNote(frequency) {
-        const gain = context.createGain();
-        gain.connect(compressor);
-
-        const oscillator = context.createOscillator();
-        oscillator.type = 'triangle';
-        oscillator.frequency.value = frequency;
-        oscillator.connect(gain);
-
-        return {
-          play: () => { play(oscillator) },
-          end: () => { end(oscillator, gain) }
-        }
-      }
-    }
-  })();
-
   const noteDisplay = document.getElementsByClassName("note-display")[0];
   const displayNote = (keyNumber) => {
     console.log(keyNumber);
@@ -102,16 +53,25 @@
 
   const handleKeyDown = (keyNumber) => {
     const frequency = getFrequencyFromKeyNumber(keyNumber);
-    const note = audio.makeNote(frequency);
-    console.log(note)
+    const note = makeNote(frequency);
     note.play();
-    note.end();
+    //note.end();
   }
 
-  const blackKeys = document.getElementsByClassName("black-keys")[0];
-  const whiteKeys = document.getElementsByClassName("white-keys")[0];
+  const buildHTMLKeyBoard = () => {
+    const blackKeys = document.getElementsByClassName("black-keys")[0];
+    const whiteKeys = document.getElementsByClassName("white-keys")[0];
 
-  document.addEventListener('DOMContentLoaded', () => {
+    const isKeyBlack = (keyNumber) => {
+      const n = keyNumber % SEMITONES;
+      return n === 0 || n === 2 || n === 5 || n === 7 || n === 10;
+    }
+
+    const doesBlackKeyNeedGap = (keyNumber) => {
+      const n = keyNumber % SEMITONES;
+      return n === 5 || n === 10;
+    }
+
     for (let i = 1; i <= KEYS; i++) {
       const newKey = document.createElement('div');
 
@@ -126,5 +86,7 @@
       else
         whiteKeys.appendChild(newKey);
     }
-  });
+  };
+
+  document.addEventListener('DOMContentLoaded', buildHTMLKeyBoard);
 })();
