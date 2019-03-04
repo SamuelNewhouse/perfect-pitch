@@ -1,0 +1,100 @@
+@import 'normalize';
+
+$white-height: 120px;
+$black-height: $white-height / 1.87;
+
+$white-width: 22px;
+$black-width: $white-width / 1.3;
+$black-spacing: $white-width - $black-width;
+$black-first-offset: $white-width - $black-width / 2;
+
+.trainer-outer-container {
+  text-align: center;
+}
+
+.trainer-inner-container {
+  display: inline-block;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.keys {
+  display: inline-block;
+
+  div > div {
+    overflow: hidden;
+    display: inline-block;
+    box-sizing: border-box;
+  }
+}
+
+.black-keys {
+  div:first-of-type {
+    margin-left: $black-first-offset;
+  }
+
+  div {
+    margin-left: $black-spacing;
+    min-width: $black-width;
+    height: 60px;
+    background: black;
+    border: 1px solid white;
+  }
+
+  .gap {
+    margin-left: $white-width + $black-spacing;
+  }
+}
+
+.white-keys {
+  div {
+    min-width: $white-width;
+    height: 120px;
+    background: white;
+    border: 1px solid black;
+  }
+}
+
+.note-display {
+  min-height: 100px;
+  border: 1px solid black;
+}
+
+.hover {
+  &-red:hover {
+    background-color: Red;
+  }
+  &-brown:hover {
+    background-color: #805300;
+  }
+  &-orange:hover {
+    background-color: Orange;
+  }
+  &-olive:hover {
+    background-color: Olive;
+  }
+  &-yellow:hover {
+    background-color: Yellow;
+  }
+  &-lime:hover {
+    background-color: Lime;
+  }
+  &-teal:hover {
+    background-color: Teal;
+  }
+  &-aqua:hover {
+    background-color: Aqua;
+  }
+  &-navy:hover {
+    background-color: Navy;
+  }
+  &-blue:hover {
+    background-color: Blue;
+  }
+  &-purple:hover {
+    background-color: purple;
+  }
+  &-fuchsia:hover {
+    background-color: Fuchsia;
+  }
+}
