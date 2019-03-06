@@ -20,19 +20,20 @@ import makeNote from './makeNote.js';
   const KEYS = 88;      // Don't change.
   const SEMITONES = 12; // Changing this doesn't make sense.
 
-  const KEYDISPLAYDATA = [
-    { cssClass: 'hover-navy', name: 'G# Ab' },
-    { cssClass: 'hover-blue', name: 'A' },
-    { cssClass: 'hover-purple', name: 'A# Bb' },
-    { cssClass: 'hover-fuchsia', name: 'B' },
-    { cssClass: 'hover-red', name: 'C' },
-    { cssClass: 'hover-brown', name: 'C# Db' },
-    { cssClass: 'hover-orange', name: 'D' },
-    { cssClass: 'hover-olive', name: 'D# Eb' },
-    { cssClass: 'hover-yellow', name: 'E' },
-    { cssClass: 'hover-lime', name: 'F' },
-    { cssClass: 'hover-teal', name: 'F# Gb' },
-    { cssClass: 'hover-aqua', name: 'G' },
+  const NOTEDURATION = 5000;
+  const KEYDATA = [
+    { color: 'navy', name: 'G# Ab' },
+    { color: 'blue', name: 'A' },
+    { color: 'purple', name: 'A# Bb' },
+    { color: 'fuchsia', name: 'B' },
+    { color: 'red', name: 'C' },
+    { color: '#805300', name: 'C# Db' }, // brown. HTML brown doesn't match the pattern.
+    { color: 'orange', name: 'D' },
+    { color: 'olive', name: 'D# Eb' },
+    { color: 'yellow', name: 'E' },
+    { color: 'lime', name: 'F' },
+    { color: 'teal', name: 'F# Gb' },
+    { color: 'aqua', name: 'G' },
   ];
 
   const keyBoard = [null]; // 0 index is null because keys start at 1.
