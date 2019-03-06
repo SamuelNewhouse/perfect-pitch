@@ -45,7 +45,7 @@ const isKeyBlack = keyNumber => {
   return n === 0 || n === 2 || n === 5 || n === 7 || n === 10;
 }
 
-const isSpacedBlackKey = keyNumber => {
+const isBlackKeySpaced = keyNumber => {
   const n = keyNumber % SEMITONES;
   return n === 5 || n === 10;
 }
@@ -57,7 +57,7 @@ for (let i = 1; i <= KEYS; i++) {
     color: getColorFromKeyNumber(i),
     name: getNameFromKeyNumber(i),
     isBlack: isKeyBlack(i),
-    isSpacedBlack: isSpacedBlackKey(i),
+    isBlackSpaced: isBlackKeySpaced(i),
     note: null,
     timeout: null
   });

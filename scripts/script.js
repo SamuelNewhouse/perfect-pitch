@@ -95,7 +95,7 @@ import keyboard from './keyboardData.js'
       newKey.addEventListener('mousedown', () => { handleKeyDown(i) });
 
       if (keyboard[i].isBlack) {
-        if (keyboard[i].isSpacedBlack)
+        if (keyboard[i].isBlackSpaced)
           newKey.classList.add('gap');
         blackKeys.appendChild(newKey);
       }
