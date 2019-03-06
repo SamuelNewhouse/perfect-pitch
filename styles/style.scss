@@ -13,22 +13,22 @@ $black-first-offset: $white-width - $black-width / 2;
 }
 
 .trainer-inner-container {
-  display: inline-block;
-  text-align: left;
-  white-space: nowrap;
+  display: inline-flex;
+  flex-direction: column;
+  height: 95vh;
 }
 
 .keys {
-  display: inline-block;
-
+  white-space: nowrap;
+  flex: 0 0;
   div > div {
-    overflow: hidden;
-    display: inline-block;
     box-sizing: border-box;
+    display: inline-block;
   }
 }
 
 .black-keys {
+  position: absolute;
   div:first-of-type {
     margin-left: $black-first-offset;
   }
@@ -36,9 +36,10 @@ $black-first-offset: $white-width - $black-width / 2;
   div {
     margin-left: $black-spacing;
     min-width: $black-width;
-    height: 60px;
+    height: $black-height;
     background: black;
     border: 1px solid white;
+    border-top: none;
   }
 
   .gap {
@@ -49,52 +50,21 @@ $black-first-offset: $white-width - $black-width / 2;
 .white-keys {
   div {
     min-width: $white-width;
-    height: 120px;
+    height: $white-height;
     background: white;
     border: 1px solid black;
   }
 }
 
-.note-display {
-  min-height: 100px;
-  border: 1px solid black;
-}
-
-.hover {
-  &-red:hover {
-    background-color: Red;
-  }
-  &-brown:hover {
-    background-color: #805300;
-  }
-  &-orange:hover {
-    background-color: Orange;
-  }
-  &-olive:hover {
-    background-color: Olive;
-  }
-  &-yellow:hover {
-    background-color: Yellow;
-  }
-  &-lime:hover {
-    background-color: Lime;
-  }
-  &-teal:hover {
-    background-color: Teal;
-  }
-  &-aqua:hover {
-    background-color: Aqua;
-  }
-  &-navy:hover {
-    background-color: Navy;
-  }
-  &-blue:hover {
-    background-color: Blue;
-  }
-  &-purple:hover {
-    background-color: purple;
-  }
-  &-fuchsia:hover {
-    background-color: Fuchsia;
+.key-info-display {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1 1;
+  div {
+    flex: 1 1;
+    width: 100%;
+    background: white;
+    border: 1px solid black;
   }
 }
