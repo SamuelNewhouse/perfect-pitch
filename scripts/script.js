@@ -76,7 +76,6 @@ import makeNote from './makeNote.js';
     for (let i = 1; i <= KEYS; i++) {
       const newKey = document.createElement('div');
 
-      newKey.classList.add(KEYDISPLAYDATA[i % SEMITONES].cssClass);
       newKey.addEventListener('mousedown', () => { handleKeyDown(i) });
 
       if (isKeyBlack(i)) {
