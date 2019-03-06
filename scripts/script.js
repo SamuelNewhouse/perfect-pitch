@@ -8,14 +8,6 @@
 import makeNote from './makeNote.js';
 
 (() => {
-  // TODO:
-  // Need to track every key so notes can be lit up while playing.
-  // Need to manually time note duration so bottom display can be adjusted as notes stop.
-
-  // HOW:
-  // Each key has a timeout set upon being pressed.
-  // If the key already has a timeout, clear and set a new one.
-
   const TUNING = 440;   // Could be changed.
   const KEYS = 88;      // Don't change.
   const SEMITONES = 12; // Changing this doesn't make sense.
@@ -86,7 +78,7 @@ import makeNote from './makeNote.js';
 
       keys.push(key);
       update();
-  }
+    }
 
     const removeKey = key => {
       const index = keys.findIndex((e) => e === key);
