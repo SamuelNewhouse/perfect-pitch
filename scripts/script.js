@@ -36,6 +36,11 @@ import makeNote from './makeNote.js';
     { color: 'aqua', name: 'G' },
   ];
 
+  const getFrequencyFromKeyNumber = keyNumber => {
+    const power = (keyNumber - 49) / SEMITONES;
+    const multiplier = 2 ** power;
+    return TUNING * multiplier;
+  }
 
   const getColorFromKeyNumber = keyNumber => {
     return KEYDATA[keyNumber % SEMITONES].color;
@@ -50,15 +55,18 @@ import makeNote from './makeNote.js';
     keyBoard.push({ note: null, timeout: null });
   }
 
-  const getFrequencyFromKeyNumber = (keyNumber) => {
-    const power = (keyNumber - 49) / SEMITONES;
-    const multiplier = 2 ** power;
-    return TUNING * multiplier;
+  function stopKey() {
+    this.note.end();
+    this.note = null;
+    this.timeout = null;
+    keyInfoDisplay.removeKey(this);
   }
 
-  const noteDisplay = document.getElementsByClassName("note-display")[0];
-  const displayNote = (keyNumber) => {
-    console.log(keyNumber);
+  function startKey() {
+    this.note = makeNote(this.frequency);
+    this.note.play();
+    this.timeout = setTimeout(stopKey.bind(this), NOTEDURATION);
+    keyInfoDisplay.addKey(this);
   }
 
   const handleKeyDown = (keyNumber) => {
