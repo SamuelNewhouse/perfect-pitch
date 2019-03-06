@@ -52,7 +52,14 @@ import makeNote from './makeNote.js';
 
   const keyBoard = [null]; // 0 index is null because keys start at 1.
   for (let i = 1; i <= KEYS; i++) {
-    keyBoard.push({ note: null, timeout: null });
+    keyBoard.push({
+      frequency: getFrequencyFromKeyNumber(i),
+      color: getColorFromKeyNumber(i),
+      name: getNameFromKeyNumber(i),
+      note: null,
+      timeout: null
+    });
+  }
   }
 
   function stopKey() {
