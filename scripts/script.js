@@ -121,10 +121,17 @@ import makeNote from './makeNote.js';
   }
 
   const handleKeyDown = (keyNumber) => {
-    const frequency = getFrequencyFromKeyNumber(keyNumber);
-    const note = makeNote(frequency);
-    note.play();
-    //note.end();
+    const key = keyBoard[keyNumber]
+
+    if (key.timeout) { // Is key still making noise
+      // TODO: Audibly Replay note. Right now the note just keeps going without any
+      // indication of the key being pressed again.
+      clearTimeout(key.timeout);
+      key.timeout = setTimeout(stopKey.bind(key), NOTEDURATION);
+      return;
+    }
+
+    startKey.call(key);
   }
 
   const buildHTMLKeyBoard = () => {
