@@ -36,6 +36,11 @@ import makeNote from './makeNote.js';
     { color: 'aqua', name: 'G' },
   ];
 
+
+  const getColorFromKeyNumber = keyNumber => {
+    return KEYDATA[keyNumber % SEMITONES].color;
+  }
+
   const keyBoard = [null]; // 0 index is null because keys start at 1.
   for (let i = 1; i <= KEYS; i++) {
     keyBoard.push({ note: null, timeout: null });
