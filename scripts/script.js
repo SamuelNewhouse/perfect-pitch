@@ -60,7 +60,51 @@ import makeNote from './makeNote.js';
       timeout: null
     });
   }
+
+  const keyInfoDisplay = (() => {
+    const display = document.getElementsByClassName("key-info-display")[0];
+    const keys = [];
+
+    const update = () => {
+      keys.sort((a, b) => b.frequency - a.frequency);
+
+      while (display.firstChild) display.removeChild(display.firstChild);
+
+      for (let k of keys) {
+        const newDiv = document.createElement('div');
+        newDiv.style.background = k.color;
+        display.appendChild(newDiv);
+      }
+    }
+
+    const addKey = key => {
+      // DEBUG ONLY
+      if (keys.includes(key)) {
+        console.log("WARNING: Key already added to keyInfoDisplay.");
+        return;
+      }
+
+      keys.push(key);
+      update();
   }
+
+    const removeKey = key => {
+      const index = keys.findIndex((e) => e === key);
+
+      // DEBUG ONLY
+      if (index < 0) {
+        console.log("WARNING: Couldn't find key in keyInfoDisplay.");
+        return;
+      }
+      keys.splice(index, 1);
+      update();
+    }
+
+    return {
+      addKey,
+      removeKey
+    }
+  })();
 
   function stopKey() {
     this.note.end();
