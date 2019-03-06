@@ -1,4 +1,4 @@
-const FADETIME = 0.2;
+const FADETIME = .05; // Extra time for the note to end cleanly without "popping"
 
 const context = new (window.AudioContext || window.webkitAudioContext)();
 const now = context.currentTime;
@@ -15,9 +15,9 @@ const play = (oscillator) => {
 }
 
 const end = (oscillator, gain) => {
-  const endTime = context.currentTime + FADETIME;
-  gain.gain.setValueAtTime(0, 0);
-  oscillator.stop(endTime);
+  const currentTime = context.currentTime;
+  gain.gain.setTargetAtTime(0, 0, 0.01);
+  oscillator.stop(currentTime + FADETIME);
 }
 
 const makeNote = (frequency) => {
