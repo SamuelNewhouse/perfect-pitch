@@ -14,18 +14,18 @@ import makeNote from './makeNote.js';
 
   const NOTEDURATION = 5000;
   const KEYDATA = [
-    { color: 'navy', name: 'G# Ab' },
-    { color: 'blue', name: 'A' },
-    { color: 'purple', name: 'A# Bb' },
-    { color: 'fuchsia', name: 'B' },
-    { color: 'red', name: 'C' },
-    { color: '#805300', name: 'C# Db' }, // brown. HTML brown doesn't match the pattern.
-    { color: 'orange', name: 'D' },
-    { color: 'olive', name: 'D# Eb' },
-    { color: 'yellow', name: 'E' },
-    { color: 'lime', name: 'F' },
-    { color: 'teal', name: 'F# Gb' },
-    { color: 'aqua', name: 'G' },
+    { color: 'navy', name: 'G#% / Ab%' },
+    { color: 'blue', name: 'A%' },
+    { color: 'purple', name: 'A#% / Bb%' },
+    { color: 'fuchsia', name: 'B%' },
+    { color: 'red', name: 'C%' },
+    { color: '#805300', name: 'C#% / Db%' }, // brown. HTML brown doesn't match the pattern.
+    { color: 'orange', name: 'D%' },
+    { color: 'olive', name: 'D#% / Eb%' },
+    { color: 'yellow', name: 'E%' },
+    { color: 'lime', name: 'F%' },
+    { color: 'teal', name: 'F#% / Gb%' },
+    { color: 'aqua', name: 'G%' },
   ];
 
   const getFrequencyFromKeyNumber = keyNumber => {
@@ -38,8 +38,14 @@ import makeNote from './makeNote.js';
     return KEYDATA[keyNumber % SEMITONES].color;
   }
 
+  const getOctaveFromKeyNumber = keyNumber => {
+    return Math.floor((keyNumber + 8) / SEMITONES);
+  }
+
   const getNameFromKeyNumber = keyNumber => {
-    return KEYDATA[keyNumber % SEMITONES].name;
+    const keyData = KEYDATA[keyNumber % SEMITONES];
+    const baseName = keyData.name;
+    return baseName.replace(/%/g, getOctaveFromKeyNumber(keyNumber));
   }
 
   const keyBoard = [null]; // 0 index is null because keys start at 1.
@@ -64,6 +70,7 @@ import makeNote from './makeNote.js';
 
       for (let k of keys) {
         const newDiv = document.createElement('div');
+        newDiv.textContent = k.name
         newDiv.style.background = k.color;
         display.appendChild(newDiv);
       }
