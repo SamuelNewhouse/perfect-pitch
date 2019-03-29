@@ -202,18 +202,18 @@ template {
   position: absolute;
 }
 .black-keys div:first-of-type {
-  margin-left: 13.5384615385px;
+  margin-left: 13.2px;
 }
 .black-keys div {
-  margin-left: 5.0769230769px;
-  min-width: 16.9230769231px;
-  height: 64.1711229947px;
+  margin-left: 4.4px;
+  min-width: 17.6px;
+  height: 70.5882352941px;
   background: black;
   border: 1px solid white;
   border-top: none;
 }
 .black-keys .gap {
-  margin-left: 27.0769230769px;
+  margin-left: 26.4px;
 }
 
 .white-keys div {
