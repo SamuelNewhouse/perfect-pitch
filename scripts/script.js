@@ -2,7 +2,7 @@ import makeNote from './makeNote.js';
 import keyboard from './keyboardData.js'
 
 (() => {
-  const NOTEDURATION = 1500;
+  const NOTEDURATION = 3000;
 
   const keyInfoDisplay = (() => {
     const display = document.getElementsByClassName("key-info-display")[0];
