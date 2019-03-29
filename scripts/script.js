@@ -1,10 +1,3 @@
-//=============================================================================
-// Created by Samuel Newhouse for
-//
-// www.SkillWax.com
-//
-// https://github.com/SamuelNewhouse
-//=============================================================================
 import makeNote from './makeNote.js';
 import keyboard from './keyboardData.js'
 
